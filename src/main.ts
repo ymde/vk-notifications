@@ -1,6 +1,7 @@
 import * as core from '@actions/core'
 import {context} from '@actions/github'
 import * as request from 'request-promise-native'
+import queryString from 'query-string';
 
 const apiUri = 'https://api.vk.com/method/messages.send'
 
@@ -13,14 +14,13 @@ async function run(): Promise<void> {
 
     core.debug(
       `sending message, chatId=${
-        chatId + 5
+        Number(chatId) + 5
       }, status=${jobStatus} payload=${JSON.stringify(context.payload)}`
     )
 
     const result = await sendMessage(botToken, chatId, jobStatus, message)
 
     core.debug(`output from vk ${JSON.stringify(result)}`)
-
   } catch (error) {
     core.setFailed(error.message)
   }
@@ -58,15 +58,11 @@ async function sendMessage(
   }
 
   return request.post(apiUri, {
-    body: {
+    body: queryString.stringify({
       access_token: botToken,
       message: message || 'test message',
       peer_id: chatId
-    },
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    json: true
+    })
   })
 }
 
