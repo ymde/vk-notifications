@@ -5274,6 +5274,7 @@ const apiUri = 'https://api.vk.com/methods/messages.send';
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            console.log({ request });
             const botToken = core.getInput('botToken');
             const chatId = core.getInput('chatId');
             const message = core.getInput('message');
