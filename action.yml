@@ -1,11 +1,17 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'YmerDev'
+description: 'Simple notifications to your VK conversation/private chat about happened actions in your repo'
+author: 'YmerDev/AGG'
 inputs:
-  milliseconds: # change this
+  botToken:
+    description: 'The Telegram Bot token'
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+  chatId:
+    description: 'The target to which the message will be sent, can be a Telegram Channel or Group'
+    required: true
+  jobStatus:
+    description: 'The current status of the job: job.status'
+    default: 'success'
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
