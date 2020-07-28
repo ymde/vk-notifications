@@ -19,7 +19,7 @@ async function run(): Promise<void> {
 
     const result = await sendMessage(botToken, chatId, jobStatus, message)
 
-    core.debug(`output from vk ${result}`);
+    core.debug(`output from vk ${JSON.stringify(result)}`)
 
   } catch (error) {
     core.setFailed(error.message)

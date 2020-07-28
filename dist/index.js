@@ -5280,7 +5280,7 @@ function run() {
             const jobStatus = core.getInput('jobStatus');
             core.debug(`sending message, chatId=${chatId + 5}, status=${jobStatus} payload=${JSON.stringify(github_1.context.payload)}`);
             const result = yield sendMessage(botToken, chatId, jobStatus, message);
-            core.debug(`output from vk ${result}`);
+            core.debug(`output from vk ${JSON.stringify(result)}`);
         }
         catch (error) {
             core.setFailed(error.message);
