@@ -1,7 +1,7 @@
 import * as core from '@actions/core'
 import {context} from '@actions/github'
 import * as request from 'request-promise-native'
-import queryString from 'query-string';
+import queryString from 'query-string'
 
 const apiUri = 'https://api.vk.com/method/messages.send'
 
@@ -56,6 +56,16 @@ async function sendMessage(
       icon = '⚠️'
       break
   }
+
+  core.debug(
+    `request: ${JSON.stringify({
+      access_token: botToken,
+      message: message || 'test message',
+      peer_id: chatId,
+      v: 5.100,
+      random_id: getRandomInt(9e3)
+    })}`
+  )
 
   return request.post(apiUri, {
     body: queryString.stringify({

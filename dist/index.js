@@ -5800,6 +5800,13 @@ function sendMessage(botToken, chatId, jobStatus = 'success', message = '') {
                 icon = '⚠️';
                 break;
         }
+        core.debug(`request: ${JSON.stringify({
+            access_token: botToken,
+            message: message || 'test message',
+            peer_id: chatId,
+            v: 5.100,
+            random_id: getRandomInt(9e3)
+        })}`);
         return request.post(apiUri, {
             body: query_string_1.default.stringify({
                 access_token: botToken,
