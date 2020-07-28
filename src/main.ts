@@ -62,7 +62,7 @@ async function sendMessage(
       access_token: botToken,
       message: message || 'test message',
       peer_id: chatId,
-      v: 5.100,
+      v: 5.111,
       random_id: getRandomInt(9e3)
     })}`
   )
@@ -72,7 +72,7 @@ async function sendMessage(
       access_token: botToken,
       message: message || 'test message',
       peer_id: chatId,
-      v: 5.100,
+      v: 5.111,
       random_id: getRandomInt(9e3)
     })
   })
