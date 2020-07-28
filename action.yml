@@ -1,4 +1,4 @@
-name: 'YmerDev'
+name: 'vk-notify'
 description: 'Simple notifications to your VK conversation/private chat about happened actions in your repo'
 author: 'YmerDev/AGG'
 inputs:
