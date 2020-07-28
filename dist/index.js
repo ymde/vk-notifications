@@ -5270,7 +5270,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(470));
 const github_1 = __webpack_require__(469);
 const request = __importStar(__webpack_require__(117));
-const apiUri = 'https://api.vk.com/methods/messages.send';
+const apiUri = 'https://api.vk.com/method/messages.send';
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
