@@ -8,6 +8,7 @@ async function run(): Promise<void> {
   try {
     const botToken = core.getInput('botToken')
     const chatId = core.getInput('chatId')
+    const message = core.getInput('message')
     const jobStatus = core.getInput('jobStatus')
 
     core.debug(
@@ -16,7 +17,7 @@ async function run(): Promise<void> {
       )}`
     )
 
-    await sendMessage(botToken, chatId, jobStatus)
+    await sendMessage(botToken, chatId, jobStatus, message)
 
   } catch (error) {
     core.setFailed(error.message)
@@ -28,11 +29,13 @@ async function run(): Promise<void> {
  * @param botToken the VK bot token to send the message
  * @param chatId id of targeted chat id or userid, to which the message will be sent
  * @param jobStatus status of the job
+ * @param message
  */
 async function sendMessage(
   botToken: String,
   chatId: String,
-  jobStatus: String = 'success'
+  jobStatus: String = 'success',
+  message: String = ''
 ) {
   const status = (jobStatus || '').toLowerCase()
 
@@ -55,8 +58,8 @@ async function sendMessage(
   return request.post(apiUri, {
     body: {
       access_token: botToken,
-      message: 'test message',
-      peer_id: chatId,
+      message: message || 'test message',
+      peer_id: chatId
     }
   });
 

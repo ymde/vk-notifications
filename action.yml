@@ -12,6 +12,10 @@ inputs:
     description: 'The current status of the job: job.status'
     default: 'success'
     required: false
+  message:
+      description: 'Custom message if you need'
+      default: ''
+      required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
