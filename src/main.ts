@@ -12,12 +12,15 @@ async function run(): Promise<void> {
     const jobStatus = core.getInput('jobStatus')
 
     core.debug(
-      `sending message, chatId=${chatId}, status=${jobStatus} payload=${JSON.stringify(
-        context.payload
-      )}`
+      `sending message, chatId=${
+        chatId + 5
+      }, status=${jobStatus} payload=${JSON.stringify(context.payload)}`
     )
 
-    await sendMessage(botToken, chatId, jobStatus, message)
+    const result = await sendMessage(botToken, chatId, jobStatus, message)
+
+    core.debug(`output from vk ${result}`);
+
   } catch (error) {
     core.setFailed(error.message)
   }
