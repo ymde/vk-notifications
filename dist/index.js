@@ -5317,7 +5317,10 @@ function sendMessage(botToken, chatId, jobStatus = 'success', message = '') {
                 message: message || 'test message',
                 peer_id: chatId
             },
-            json: true,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            json: true
         });
     });
 }
