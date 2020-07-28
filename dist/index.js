@@ -5316,7 +5316,8 @@ function sendMessage(botToken, chatId, jobStatus = 'success', message = '') {
                 access_token: botToken,
                 message: message || 'test message',
                 peer_id: chatId
-            }
+            },
+            json: true,
         });
     });
 }
