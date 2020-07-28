@@ -5804,10 +5804,15 @@ function sendMessage(botToken, chatId, jobStatus = 'success', message = '') {
             body: query_string_1.default.stringify({
                 access_token: botToken,
                 message: message || 'test message',
-                peer_id: chatId
+                peer_id: chatId,
+                v: 5.100,
+                random_id: getRandomInt(9e3)
             })
         });
     });
+}
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
 }
 run();
 

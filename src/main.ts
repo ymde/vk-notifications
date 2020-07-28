@@ -61,9 +61,15 @@ async function sendMessage(
     body: queryString.stringify({
       access_token: botToken,
       message: message || 'test message',
-      peer_id: chatId
+      peer_id: chatId,
+      v: 5.100,
+      random_id: getRandomInt(9e3)
     })
   })
+}
+
+function getRandomInt(max: number): number {
+  return Math.floor(Math.random() * Math.floor(max))
 }
 
 run()
