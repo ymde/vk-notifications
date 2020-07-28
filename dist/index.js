@@ -5800,17 +5800,22 @@ function sendMessage(botToken, chatId, jobStatus = 'success', message = '') {
                 icon = '⚠️';
                 break;
         }
-        core.debug(`request: ${JSON.stringify({
-            access_token: botToken,
-            message: message || 'test message',
-            peer_id: chatId,
-            v: 5.111,
-            random_id: getRandomInt(9e3)
-        })}`);
+        const text = `${icon} ${repoFullname} ${workflow} *${jobStatus}*
+  \`${ref}\` \`${sha.substr(0, 7)}\` от *${actor}*
+  
+  Подробнее: ${repoUrl}/commit/${sha}`;
         return request.post(apiUri, {
             body: query_string_1.default.stringify({
                 access_token: botToken,
-                message: message || 'test message',
+                message: prepareString(message, {
+                    repoFullname,
+                    repoUrl,
+                    ref,
+                    sha,
+                    workflow,
+                    actor,
+                    icon,
+                }) || text,
                 peer_id: chatId,
                 v: 5.111,
                 random_id: getRandomInt(9e3)
@@ -5820,6 +5825,10 @@ function sendMessage(botToken, chatId, jobStatus = 'success', message = '') {
 }
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
+}
+function prepareString(string, placeholders) {
+    const keys = Object.keys(placeholders);
+    return string.replace(new RegExp(`(${keys.map(key => `\\{${key}\\}`).join('|')})`, 'g'), replacement => placeholders[replacement.replace(/{([a-zA-Z0-9]+)}/, '$1')]);
 }
 run();
 
